@@ -9,8 +9,15 @@
   "author": "Ray Francisco",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "express-validator": "^6.14.2"
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.6.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "prisma": "^4.3.1"
   }
 }
