@@ -1,14 +1,26 @@
+const jwt=require('jsonwebtoken')
 const  bcrypt=require('bcryptjs')
 const Usuario=require('../models/usuario')
 
-const logIn=(req,res)=>{
-res.json({
-    'msg':'Log In here'
+const logIn=async(req,res)=>{
+  const {_id:id,...usuario}=req.usuario
+
+const token=jwt.sign({id},process.env.SECRETKEY,{
+  expiresIn:'2h'
 })
+
+
+return res.json({
+  message:'El usuario ah accedido con exito',
+  usuario,
+  token
+})
+
 }
 
 const  singUp= async(req,res)=>{
   const {name,lastName,email,password,phone}=req.body
+  console.log(req.body)
   const role='CLIENT_ROLE'
   const exist= await Usuario.findOne({email})
   if(exist){
@@ -32,7 +44,7 @@ const  singUp= async(req,res)=>{
       }
   )
   }
-  return res.json(
+  return res.status(201).json(
   {
       message:'El usuario se ha insertado',
       usuario

@@ -1,4 +1,5 @@
 const express=require('express')
+const cors=require('cors')
 const {dbConnection}=require('../db/configdb')
 const PORT=process.env.PORT
 
@@ -22,12 +23,14 @@ class Server{
 
     Routes(){
         this.app.use('/auth',require('../routes/auth'))
+        
         }
     
 
 Middlewares(){
     this.app.use(express.urlencoded({extended:false}))
     this.app.use(express.json())
+    this.app.use(cors())
 }
 
 Listen(port){
